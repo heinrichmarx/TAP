@@ -5,9 +5,6 @@
     "adminUsername": {
       "value": "student"
     },
-    "name": {
-        "value": "mydeployment"
-    },
     "adminPassword": {
         "value": "Pa55w.rd1234"
     },
