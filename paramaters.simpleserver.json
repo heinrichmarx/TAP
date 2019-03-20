@@ -13,13 +13,6 @@
     },
     "location": {
         "value": "westeurope"
-    },  
-    "adminPassword": {
-      "value": "Pa55w.rd1234"
-    },
-    "dnsLabelPrefix": {
-      "value": "deletethis"
-    }
-
+        }
   }
 }
