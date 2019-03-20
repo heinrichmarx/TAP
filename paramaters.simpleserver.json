@@ -8,10 +8,13 @@
     "name": {
         "value": "mydeployment"
     },
-    "resourcegroupname": {
-        "value": "delete"
+    "adminPassword": {
+        "value": "Pa55w.rd1234"
     },
-      "location": {
+    "dnsLabelPrefix": {
+        "value": "deletethissrv"
+    },
+    "location": {
         "value": "westeurope"
     },  
     "adminPassword": {
