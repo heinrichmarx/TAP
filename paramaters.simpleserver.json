@@ -5,6 +5,9 @@
     "adminUsername": {
       "value": "student"
     },
+    "name": {
+        "value": "mydeployment"
+    },
     "resourcegroupname": {
         "value": "delete"
     },
