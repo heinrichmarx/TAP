@@ -1,5 +1,5 @@
 {
-    "name": deployment,
+    "name": "string",
     "type": "Microsoft.Compute/virtualMachines",
     "apiVersion": "2018-10-01",
     "location": "string",
