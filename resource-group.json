@@ -2,14 +2,8 @@
     "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
     "contentVersion": "1.0.0.1",
     "parameters": {
-        "rgName": {
-            "type": "string",
-             "defaultValue": "TestHeinRG"
-            
-        },
-        "rgLocation": {
-            "type": "string",
-            "defaultValue": "westeurope"
+        "rgName": "testehinrg",
+        "rgLocation": "westeurope"
         }
     },
     "variables": {},
