@@ -23,7 +23,7 @@
     "resources": [
         {
             "type": "Microsoft.Network/virtualNetworks",
-            "name": "[parameters('virtualNetworks_testvnet111_name')]",
+            "name": "[parameters('virtualNetworks_helvnetname')]",
             "apiVersion": "2018-12-01",
             "location": "westeurope",
             "scale": null,
@@ -74,7 +74,7 @@
         },
         {
             "type": "Microsoft.Network/virtualNetworks/subnets",
-            "name": "[concat(parameters('virtualNetworks_testvnet111_name'), '/', parameters('subnets_default_name'))]",
+            "name": "[concat(parameters('virtualNetworks_helvnetname'), '/', parameters('subnets_default_name'))]",
             "apiVersion": "2018-12-01",
             "scale": null,
             "properties": {
@@ -83,12 +83,12 @@
                 "delegations": []
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_testvnet111_name'))]"
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_helvnetname'))]"
             ]
         },
         {
             "type": "Microsoft.Network/virtualNetworks/subnets",
-            "name": "[concat(parameters('virtualNetworks_testvnet111_name'), '/', parameters('subnets_mgmt_Subnet_name'))]",
+            "name": "[concat(parameters('virtualNetworks_helvnetname'), '/', parameters('subnets_mgmt_Subnet_name'))]",
             "apiVersion": "2018-12-01",
             "scale": null,
             "properties": {
@@ -98,12 +98,12 @@
                 "delegations": []
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_testvnet111_name'))]"
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_helvnetname'))]"
             ]
         },
         {
             "type": "Microsoft.Network/virtualNetworks/subnets",
-            "name": "[concat(parameters('virtualNetworks_testvnet111_name'), '/', parameters('subnets_api_subnet_name'))]",
+            "name": "[concat(parameters('virtualNetworks_helvnetname'), '/', parameters('subnets_api_subnet_name'))]",
             "apiVersion": "2018-12-01",
             "scale": null,
             "properties": {
@@ -113,7 +113,7 @@
                 "delegations": []
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_testvnet111_name'))]"
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_helvnetname'))]"
             ]
         }
     ]
