@@ -1,16 +1,6 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
-    "parameters": {
-        "loadBalancers_name": {
-            "defaultValue": "mylb",
-            "type": "string"
-        },
-        "publicIPAddresses_name": {
-            "defaultValue": "myip",
-            "type": "string"
-        }
-    },
     "variables": {},
 "resources": [
   {
@@ -23,29 +13,9 @@
         "uri":"https://bitbucket.org/gavhooper/hel-task-3/raw/bff67f9facc782db719d4622a51544d4e2d2d027/task-3-network.json",
         "contentVersion":"1.0.0.0"
     },
-    "type": "Microsoft.Resources/deployments",
-    "apiVersion": "2018-05-01",
-    "name": "linkedTemplatedb",
-    "properties": {
-    "mode": "Incremental",
-    "templateLink": {
-        "uri":"https://bitbucket.org/gavhooper/hel-task-3/raw/bff67f9facc782db719d4622a51544d4e2d2d027/deploy-db.json",
-        "contentVersion":"1.0.0.0"
-    },
-    "dependsOn": [
-                "linkedTemplatenetwork"
-            ]
-        {
-    "type": "Microsoft.Resources/deployments",
-    "apiVersion": "2018-05-01",
-    "name": "linkedTemplateapi",
-    "properties": {
-    "mode": "Incremental",
-    "templateLink": {
-        "uri":"https://bitbucket.org/gavhooper/hel-task-3/raw/bff67f9facc782db719d4622a51544d4e2d2d027/deploy-api.json",
-        "contentVersion":"1.0.0.0"
-    },
-    "dependsOn": [
-                "linkedTemplatenetwork"
-            ]
-    
+},
+"parameters": {}
+}
+]
+   
+ 
