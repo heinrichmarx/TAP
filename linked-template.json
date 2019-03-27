@@ -4,17 +4,17 @@
     "variables": {},
 "resources": [
   {
-    "type": "Microsoft.Resources/deployments",
-    "apiVersion": "2018-05-01",
-    "name": "linkedTemplatenetwork",
-    "properties": {
-    "mode": "Incremental",
-    "templateLink": {
-        "uri":"https://bitbucket.org/gavhooper/hel-task-3/raw/bff67f9facc782db719d4622a51544d4e2d2d027/task-3-network.json",
-        "contentVersion":"1.0.0.0"
-         },
+     "type": "Microsoft.Resources/deployments",
+     "apiVersion": "2018-05-01",
+     "name": "linkedTemplate",
+     "properties": {
+       "mode": "Incremental",
+       "templateLink": {
+          "uri":"https://bitbucket.org/gavhooper/hel-task-3/raw/bff67f9facc782db719d4622a51544d4e2d2d027/task-3-network.json",
+          "contentVersion":"1.0.0.0"
+       },
        "parameters": {}
         }
      }
-]  
- 
+  }
+]
