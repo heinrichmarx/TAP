@@ -1,42 +1,35 @@
 {
-    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.0",
-    "parameters": {
-      "adminPassword": {
-        "type": "securestring",
-        "metadata": {
-          "description": "Password for the Virtual Machine. SSH key is recommended."
-        }
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "adminPassword": {
+      "type": "securestring",
+      "metadata": {
+        "description": "Password for the Virtual Machine. SSH key is recommended."
       }
-    },
-  
-    "variables": {
-      "adminUsername": "teamhel",
-      "location": "[resourceGroup().location]"
-    },
-    "resources": [
-      {
-        "type": "Microsoft.Resources/deployments",
-        "apiVersion": "2018-05-01",
-        "name": "linkedTemplate",
-        "properties": {
-          "mode": "Incremental",
-          "name": "network",
-          "templateLink": {
-            "uri": ",https://bitbucket.org/gavhooper/hel-task-3/raw/687b3e3178325ac91d47f2948d342927e0976e7e/task-3-networkv4.json",
-            "contentVersion": "1.0.0.0"
-          },
-          "name": "dbdeploy",
-          "templateLink": {
-                "uri": "https://raw.githubusercontent.com/heinrichmarx/TAP/master/deploy-db-linked.json",
-                "contentVersion": "1.0.0.0"
-              },
-            "dependsOn": ["linkedTemplate"]
+    }
+  },
+
+  "variables": {
+    "adminUsername": "teamhel",
+    "location": "[resourceGroup().location]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2018-05-01",
+      "name": "deploynet",
+      "properties": {
+        "mode": "Incremental",
+        "name": "network",
+        "templateLink": {
+          "uri": ",https://bitbucket.org/gavhooper/hel-task-3/raw/687b3e3178325ac91d47f2948d342927e0976e7e/task-3-networkv4.json",
+          "contentVersion": "1.0.0.0"
         },
-          "parameters":{
-              "adminPassword": {"value": "[parameters('adminPassword')]"}
-          }
-          
+        "parameters":{
+            "adminPassword": {"value": "[parameters('adminPassword')]"}
         }
-    ]
-  }
+      } 
+      }
+  ]
+}
