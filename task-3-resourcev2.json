@@ -1,0 +1,142 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "vaults_helkey3_name": {
+      "defaultValue": "helkey3",
+      "type": "String"
+    },
+    "storageAccounts_helstore3_name": {
+      "defaultValue": "helstore3",
+      "type": "String"
+    },
+    "registries_helcontainer3_name": {
+      "defaultValue": "helcontainer3",
+      "type": "String"
+    },
+    "storageNamePrefix": {
+      "type": "string",
+      "metadata": {
+        "description": "The prefix string to add to a generated string that is unique to the resourceGroup."
+      }
+    },
+  }, "variables": {
+  "storageName": "[toLower( concat( parameters('storageNamePrefix'), uniqueString(resourceGroup().id) ) )]",
+  "location": "[resourceGroup().location]"
+}, "resources": [
+  {
+    "type": "Microsoft.ContainerRegistry/registries",
+    "sku": {
+      "name": "Basic",
+      "tier": "Basic"
+    },
+    "name": "[parameters('registries_helcontainer3_name')]",
+    "apiVersion": "2017-10-01",
+    "location": "westeurope",
+    "tags": {},
+    "scale": null,
+    "properties": {
+      "adminUserEnabled": false
+    },
+    "dependsOn": []
+  },
+  {
+    "type": "Microsoft.KeyVault/vaults",
+    "name": "[parameters('vaults_helkey3_name')]",
+    "apiVersion": "2016-10-01",
+    "location": "westeurope",
+    "tags": {},
+    "scale": null,
+    "properties": {
+      "sku": {
+        "family": "A",
+        "name": "Standard"
+      },
+      "tenantId": "e41e0f2c-bd29-42cb-95f3-07705667ea7b",
+      "accessPolicies": [
+        {
+          "tenantId": "e41e0f2c-bd29-42cb-95f3-07705667ea7b",
+          "objectId": "69b41a4c-8629-4644-b926-ad0abe4b428c",
+          "permissions": {
+            "keys": [
+              "Get",
+              "List",
+              "Update",
+              "Create",
+              "Import",
+              "Delete",
+              "Recover",
+              "Backup",
+              "Restore"
+            ],
+            "secrets": [
+              "Get",
+              "List",
+              "Set",
+              "Delete",
+              "Recover",
+              "Backup",
+              "Restore"
+            ],
+            "certificates": [
+              "Get",
+              "List",
+              "Update",
+              "Create",
+              "Import",
+              "Delete",
+              "Recover",
+              "Backup",
+              "Restore",
+              "ManageContacts",
+              "ManageIssuers",
+              "GetIssuers",
+              "ListIssuers",
+              "SetIssuers",
+              "DeleteIssuers"
+            ]
+          }
+        }
+      ],
+      "enabledForDeployment": false,
+      "enabledForDiskEncryption": false,
+      "enabledForTemplateDeployment": false
+    },
+    "dependsOn": []
+  },
+  {
+    "apiVersion": "2018-07-01",
+    "dependsOn": [],
+    "kind": "StorageV2",
+    "location": "westeurope",
+    "name": "[variables('storageName')]",
+    "properties": {
+      "accessTier": "Hot",
+      "encryption": {
+        "services": {
+          "file": {
+            "enabled": true
+          },
+          "blob": {
+            "enabled": true
+          }
+        },
+        "keySource": "Microsoft.Storage"
+      },
+      "networkAcls": {
+        "bypass": "AzureServices",
+        "virtualNetworkRules": [],
+        "ipRules": [],
+        "defaultAction": "Allow"
+      },
+      "supportsHttpsTrafficOnly": true
+    },
+    "scale": null,
+    "sku": {
+      "name": "Standard_LRS",
+      "tier": "Standard"
+    },
+    "tags": {},
+    "type": "Microsoft.Storage/storageAccounts"
+  }
+] }
