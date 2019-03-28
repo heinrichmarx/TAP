@@ -4,6 +4,7 @@
     "parameters":  {
         "adminUsername":  {
           "value":  "teamhel"
+          "type": "securestring",  
            },
           "adminPassword":  {
             "reference":  {
