@@ -1,39 +1,41 @@
 {
-  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-  "contentVersion": "1.0.0.0",
-  "parameters": {
-    "adminPassword": {
-      "type": "securestring",
-      "metadata": {
-        "description": "Password for the Virtual Machine. SSH key is recommended."
-      }
-    }
-  },
-
-  "variables": {
-    "adminUsername": "teamhel",
-    "location": "[resourceGroup().location]"
-  },
-  "resources": [
-    {
-      "type": "Microsoft.Resources/deployments",
-      "apiVersion": "2018-05-01",
-      "name": "linkedTemplate",
-      "properties": {
-        "mode": "Incremental",
-        "templateLink": {
-          "uri": "https://raw.githubusercontent.com/heinrichmarx/TAP/master/deploy-db-linked.json",
-          "contentVersion": "1.0.0.0"
-        },
-        "templateLink": {
-              "uri": "https://raw.githubusercontent.com/heinrichmarx/TAP/master/deploy2-api-linked.json",
-              "contentVersion": "1.0.0.0"
-            },
-        "parameters":{
-            "adminPassword": {"value": "[parameters('adminPassword')]"}
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "adminPassword": {
+        "type": "securestring",
+        "metadata": {
+          "description": "Password for the Virtual Machine. SSH key is recommended."
         }
-        
       }
-    } 
-  ]
-}
+    },
+  
+    "variables": {
+      "adminUsername": "teamhel",
+      "location": "[resourceGroup().location]"
+    },
+    "resources": [
+      {
+        "type": "Microsoft.Resources/deployments",
+        "apiVersion": "2018-05-01",
+        "name": "linkedTemplate",
+        "properties": {
+          "mode": "Incremental",
+          "name": "dbdeploy",
+          "templateLink": {
+            "uri": "https://raw.githubusercontent.com/heinrichmarx/TAP/master/deploy-db-linked.json",
+            "contentVersion": "1.0.0.0"
+          },
+          "name": "apideploy",
+          "templateLink": {
+                "uri": "https://raw.githubusercontent.com/heinrichmarx/TAP/master/deploy2-api-linked.json",
+                "contentVersion": "1.0.0.0"
+              },
+          "parameters":{
+              "adminPassword": {"value": "[parameters('adminPassword')]"}
+          }
+          
+        }
+      } 
+    ]
+  }
