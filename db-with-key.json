@@ -1,21 +1,18 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
-    "parameters": {
-    "password": {
-    "type": "securestring",
-      "reference": {
-        "keyVault": {
-        "id": "/subscriptions/8662649f-314e-40f0-a3d9-6453ad460fbf/resourceGroups/hel-task3-rg/providers/Microsoft.KeyVault/vaults/helkey3"
-        },
-        "secretName": "adminPassword"
-      }
-    },
-    "username": {
-      "value": "teamhel"
-    }
-  }
-},
+    "parameters":  {
+        "adminUsername":  {
+          "value":  "teamhel"
+           },
+          "adminPassword":  {
+            "reference":  {
+               "keyVault":  {
+                "id": "/subscriptions/8662649f-314e-40f0-a3d9-6453ad460fbf/resourceGroups/hel-task3-rg/providers/Microsoft.KeyVault/vaults/helkey3"
+            },
+               "secretName":  "adminpassword"
+            }
+          },
    "variables": {
         "adminUsername": "teamhel",
         "vmName": "heldbvm",
