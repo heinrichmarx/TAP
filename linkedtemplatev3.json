@@ -25,27 +25,15 @@
           "uri": "https://raw.githubusercontent.com/heinrichmarx/TAP/master/deploy-db-linked.json",
           "contentVersion": "1.0.0.0"
         },
+        "templateLink": {
+              "uri": "https://raw.githubusercontent.com/heinrichmarx/TAP/master/deploy2-api-linked.json",
+              "contentVersion": "1.0.0.0"
+            },
         "parameters":{
             "adminPassword": {"value": "[parameters('adminPassword')]"}
         }
         
       }
-    },
-        {
-          "type": "Microsoft.Resources/deployments",
-          "apiVersion": "2018-05-01",
-          "name": "linkedTemplate",
-          "properties": {
-            "mode": "Incremental",
-            "templateLink": {
-              "uri": "https://raw.githubusercontent.com/heinrichmarx/TAP/master/deploy2-api-linked.json",
-              "contentVersion": "1.0.0.0"
-            },
-            "parameters":{
-                "adminPassword": {"value": "[parameters('adminPassword')]"}
-            }
-            
-          }
-        }
+    } 
   ]
 }
