@@ -21,14 +21,14 @@
         "name": "linkedTemplate",
         "properties": {
           "mode": "Incremental",
-          "name": "dbdeploy",
+          "name": "network",
           "templateLink": {
-            "uri": "https://raw.githubusercontent.com/heinrichmarx/TAP/master/deploy-db-linked.json",
+            "uri": ",https://bitbucket.org/gavhooper/hel-task-3/raw/687b3e3178325ac91d47f2948d342927e0976e7e/task-3-networkv4.json"
             "contentVersion": "1.0.0.0"
           },
-          "name": "apideploy",
+          "name": "dbdeploy",
           "templateLink": {
-                "uri": "https://raw.githubusercontent.com/heinrichmarx/TAP/master/deploy2-api-linked.json",
+                "uri": "https://raw.githubusercontent.com/heinrichmarx/TAP/master/deploy-db-linked.json",
                 "contentVersion": "1.0.0.0"
               },
           "parameters":{
