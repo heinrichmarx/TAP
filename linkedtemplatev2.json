@@ -9,6 +9,7 @@
       }
     }
   },
+
   "variables": {
     "adminUsername": "teamhel",
     "location": "[resourceGroup().location]"
@@ -26,7 +27,13 @@
         }
         
       }
-    },
-  ]
+    }
+  ],
+  "outputs": {
+    "Password": {
+        "type": "securestring",
+        "value": "[reference(parameters('adminPassword'))]"
+      }
+   }
 
 }
