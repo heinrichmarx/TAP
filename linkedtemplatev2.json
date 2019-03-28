@@ -26,7 +26,7 @@
           "contentVersion": "1.0.0.0"
         },
         "parameters":{
-            "password": {"value": "[parameters('adminPassword')]"}
+            "adminPassword": {"value": "[parameters('adminPassword')]"}
         }
         
       }
