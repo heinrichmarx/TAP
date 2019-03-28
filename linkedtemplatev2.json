@@ -24,16 +24,12 @@
         "templateLink": {
           "uri": "https://bitbucket.org/gavhooper/hel-task-3/raw/9c4f5bbf81761abc7da1512c3cef9dc7ba32f87b/deploy-db.json",
           "contentVersion": "1.0.0.0"
+        },
+        "parameters":{
+            "password": {"value": "[parameters('adminPassword')]"}
         }
         
       }
     }
-  ],
-  "outputs": {
-    "password": {
-        "type": "securestring",
-        "value": "[reference(parameters('adminPassword'))]"
-      }
-   }
-
+  ]
 }
