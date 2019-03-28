@@ -23,7 +23,7 @@
           "mode": "Incremental",
           "name": "network",
           "templateLink": {
-            "uri": ",https://bitbucket.org/gavhooper/hel-task-3/raw/687b3e3178325ac91d47f2948d342927e0976e7e/task-3-networkv4.json"
+            "uri": ",https://bitbucket.org/gavhooper/hel-task-3/raw/687b3e3178325ac91d47f2948d342927e0976e7e/task-3-networkv4.json",
             "contentVersion": "1.0.0.0"
           },
           "name": "dbdeploy",
