@@ -30,7 +30,7 @@
     }
   ],
   "outputs": {
-    "Password": {
+    "password": {
         "type": "securestring",
         "value": "[reference(parameters('adminPassword'))]"
       }
