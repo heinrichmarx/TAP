@@ -1,0 +1,32 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "adminPassword": {
+      "type": "securestring",
+      "metadata": {
+        "description": "Password for the Virtual Machine. SSH key is recommended."
+      }
+    }
+  },
+  "variables": {
+    "adminUsername": "teamhel",
+    "location": "[resourceGroup().location]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2018-05-01",
+      "name": "linkedTemplate",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "https://bitbucket.org/gavhooper/hel-task-3/raw/9c4f5bbf81761abc7da1512c3cef9dc7ba32f87b/deploy-db.json",
+          "contentVersion": "1.0.0.0"
+        }
+        
+      }
+    },
+  ]
+
+}
