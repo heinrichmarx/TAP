@@ -1,0 +1,129 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "adminPassword": {
+    "reference": {
+      "keyVault": {
+        "id": "/subscriptions/8662649f-314e-40f0-a3d9-6453ad460fbf/resourceGroups/hel-task3-rg/providers/Microsoft.KeyVault/vaults/helkey3"
+      },
+      "secretName": "adminpassword"
+    }
+  },
+    "variables": {
+        "adminUsername": "teamhel",
+        "vmName": "heldbvm",
+        "location": "[resourceGroup().location]",
+        "nicName": "[concat(variables('vmName'),'nic')]",
+        "vnetName": "helvnet",
+        "vmSize": "Standard_B1ms",
+        "subnetName": "dbsubnet",
+        "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('vnetName'), variables('subnetName'))]",
+        "imagePublisher": "Canonical",
+        "imageOffer": "UbuntuServer",
+        "ubuntuOSVersion": "16.04-LTS",
+        "blobURL": "https://ksdkfnldfsa.blob.core.windows.net/deploy/",
+        "SASToken": "?sp=rl&se=2019-03-28T08:51:40Z&sv=2018-03-28&sig=w43ZHKoPsNK8E6PqM70sxddqJXyVX5QLXoqYU1X5ddU%3D&sr=c",
+        "dbScript": "deploy-dbvm.sh",
+        "dbcommandToExecute": "sh deploy-dbvm.sh -e 'prod' -s '?sp=rl&se=2019-03-28T08:51:40Z&sv=2018-03-28&sig=w43ZHKoPsNK8E6PqM70sxddqJXyVX5QLXoqYU1X5ddU%3D&sr=c' -u 'https://ksdkfnldfsa.blob.core.windows.net/deploy'"
+      },
+    "resources": [
+        {
+          "type": "Microsoft.Network/networkInterfaces",
+          "apiVersion": "2018-11-01",
+          "name": "[variables('nicName')]",
+          "location": "[variables('location')]",
+          "dependsOn": [],
+          "properties": {
+            "ipConfigurations": [
+              {
+                "name": "ipconfig1",
+                "properties": {
+                  "privateIPAllocationMethod": "Dynamic",
+                  "subnet": {
+                    "id": "[variables('subnetRef')]"
+                   }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "Microsoft.Compute/virtualMachines",
+          "name": "[variables('vmName')]",
+          "apiVersion": "2018-10-01",
+          "location": "[variables('location')]",
+          "dependsOn": [
+            "[concat('Microsoft.Network/networkInterfaces/', variables('nicName'))]"
+          ],
+          "properties": {
+            "hardwareProfile": {
+              "vmSize": "[variables('vmSize')]"
+            },
+            "osProfile": {
+              "computerName": "[variables('vmName')]",
+              "adminUsername": "[variables('adminUsername')]",
+              "adminPassword": "[parameters('adminPassword')]"
+              },
+            "storageProfile": {
+              "imageReference": {
+                "publisher": "[variables('imagePublisher')]",
+                "offer": "[variables('imageOffer')]",
+                "sku": "[variables('ubuntuOSVersion')]",
+                "version": "latest"
+              },
+              "osDisk": {
+                "createOption": "FromImage"
+              },
+              "dataDisks": [
+                {
+                  "diskSizeGB": 10,
+                  "lun": 0,
+                  "createOption": "Empty"
+                }
+              ]
+            },
+            "networkProfile": {
+              "networkInterfaces": [
+                {
+                  "id": "[resourceId('Microsoft.Network/networkInterfaces',variables('nicName'))]"
+                }
+              ]
+            },
+            "diagnosticsProfile": {
+              "bootDiagnostics": {}
+            }
+          }
+    },
+    {
+        "type": "Microsoft.Compute/virtualMachines/extensions",
+        "name": "[concat(variables('vmName'),'/','extensions')]",
+        "apiVersion": "2018-10-01",
+        "location": "[variables('location')]",
+        "dependsOn": [
+          "[concat('Microsoft.Compute/virtualMachines/', variables('vmName'))]"
+        ],
+        "properties": {
+          "publisher": "Microsoft.Azure.Extensions",
+          "type": "CustomScript",
+          "typeHandlerVersion": "2.0",
+          "autoUpgradeMinorVersion": true,
+          "settings": {
+            "fileUris": [
+                "https://ksdkfnldfsa.blob.core.windows.net/deploy/deploy-dbvm.sh?sp=rl&se=2019-03-28T08:51:40Z&sv=2018-03-28&sig=w43ZHKoPsNK8E6PqM70sxddqJXyVX5QLXoqYU1X5ddU%3D&sr=c"
+            ],
+            "commandToExecute": "[variables('dbcommandToExecute')]"
+          }
+          
+        }
+      }
+    ]
+  ,
+    "outputs": {
+      "privateIPAddress": {
+        "type": "string",
+        "value": "[reference(concat(variables('nicName'))).ipConfigurations[0].properties.privateIPAddress]"
+      }
+    }
+  }
+  
