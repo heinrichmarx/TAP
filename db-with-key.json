@@ -4,10 +4,10 @@
     "parameters":  {
         "adminUsername":  {
           "value":  "teamhel",
-          "type": "securestring",  
+          "type": "securestring"
            },
           "adminPassword":  {
-          "type": "securestring"  
+          "type": "securestring",  
             "reference":  {
                "keyVault":  {
                 "id": "/subscriptions/8662649f-314e-40f0-a3d9-6453ad460fbf/resourceGroups/hel-task3-rg/providers/Microsoft.KeyVault/vaults/helkey3"
