@@ -9,7 +9,6 @@
       }
     }
   },
-
   "variables": {
     "adminUsername": "teamhel",
     "location": "[resourceGroup().location]"
