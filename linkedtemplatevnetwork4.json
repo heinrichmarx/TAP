@@ -7,14 +7,7 @@
       "metadata": {
         "description": "Password for the Virtual Machine. SSH key is recommended."
       }
-    },
-    "virtualNetworks_helvnet_name": {"value":"paramaters('helvnet')"},
-    "networkSecurityGroups_heldbnsg_name": {"value":"paramaters('heldbnsg')"},
-    "networkSecurityGroups_helapisng_name, ": {"value":"paramaters('helapisng')"},
-    "networkSecurityGroups_helmgmtnsg_name": {"value":"paramaters('helmgmtnsg')"},
-    "subnets_dbsubnet_name": {"value":"paramaters('dbsubneta')"},
-    "subnets_apisubnet_name": {"value":"paramaters('apisubnet')"},
-    "subnets_mgmtsubnet_name": {"value":"paramaters('mgmtsubnet')"}
+    }
   },
 
   "variables": {
@@ -25,25 +18,38 @@
     {
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2018-05-01",
-      "name": "deploynet",
+      "name": "linkedTemplate",
       "properties": {
         "mode": "Incremental",
-        "name": "network",
+        "templateLink": {
+          "uri": "https://bitbucket.org/gavhooper/hel-task-3/raw/9c4f5bbf81761abc7da1512c3cef9dc7ba32f87b/deploy-db.json",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters":{
+            "adminPassword": {"value": "[parameters('adminPassword')]"}
+        },
+        "dependsOn": ["Network"]
+      },
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2018-05-01",
+      "name": "Network",
+      "properties": {
+        "mode": "Incremental",
         "templateLink": {
           "uri": "https://bitbucket.org/gavhooper/hel-task-3/raw/687b3e3178325ac91d47f2948d342927e0976e7e/task-3-networkv4.json",
           "contentVersion": "1.0.0.0"
         },
         "parameters":{
-            "virtualNetworks_helvnet_name": {"value":"paramaters('helvnet')"},
-            "networkSecurityGroups_heldbnsg_name": {"value":"paramaters('heldbnsg')"},
-            "networkSecurityGroups_helapisng_name, ": {"value":"paramaters('helapisng')"},
-            "networkSecurityGroups_helmgmtnsg_name": {"value":"paramaters('helmgmtnsg')"},
-            "subnets_dbsubnet_name": {"value":"paramaters('dbsubneta')"},
-            "subnets_apisubnet_name": {"value":"paramaters('apisubnet')"},
-            "subnets_mgmtsubnet_name": {"value":"paramaters('mgmtsubnet')"}
+          "virtualNetworks_helvnet_name": {"value":"paramaters('helvnet')"},
+          "networkSecurityGroups_heldbnsg_name": {"value":"paramaters('heldbnsg')"},
+          "networkSecurityGroups_helapisng_name, ": {"value":"paramaters('helapisng')"},
+          "networkSecurityGroups_helmgmtnsg_name": {"value":"paramaters('helmgmtnsg')"},
+          "subnets_dbsubnet_name": {"value":"paramaters('dbsubneta')"},
+          "subnets_apisubnet_name": {"value":"paramaters('apisubnet')"},
+          "subnets_mgmtsubnet_name": {"value":"paramaters('mgmtsubnet')"}
         }
-      } 
+        
       }
+    }
   ]
 }
-
