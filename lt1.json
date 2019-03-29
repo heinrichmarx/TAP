@@ -1,0 +1,42 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "adminPassword": {
+    "type": "securestring",
+    "metadata": {
+      "description": "Password for the Virtual Machine."
+    }}},
+  "resources": [
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2018-05-01",
+      "name": "network",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "https://bitbucket.org/gavhooper/hel-task-3/raw/7688ad3a381c75b6d291c9a8dd4610b3230afea6/task-3-networkv4.json",
+          "contentVersion": "1.0.0.0"
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2018-05-01",
+      "name": "dbVM",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "https://bitbucket.org/gavhooper/hel-task-3/raw/7688ad3a381c75b6d291c9a8dd4610b3230afea6/deploy-db.json",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "adminPassword" : { "value" : "[parameters('adminPassword')]" }
+        }
+      },
+      "dependsOn": [
+        "network"
+      ]
+    }
+      ]
+  }
