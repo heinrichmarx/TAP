@@ -45,7 +45,7 @@
         "properties": {
           "mode": "Incremental",
           "templateLink": {
-            "uri": "https://bitbucket.org/gavhooper/hel-task-3/raw/b71caf1855952b63384c8e6d22659ba72ace0874/deploy2-api.json",
+            "uri": "https://bitbucket.org/gavhooper/hel-task-3/raw/b71caf1855952b63384c8e6d22659ba72ace0874/deploy-apiscript.json",
             "contentVersion": "1.0.0.0"
           },
           "parameters": {
