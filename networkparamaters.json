@@ -1,0 +1,12 @@
+ { "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "virtualNetworks_helvnet_name": {"value":"paramaters('helvnet')"},
+    "networkSecurityGroups_heldbnsg_name": {"value":"paramaters('heldbnsg')"},
+    "networkSecurityGroups_helapisng_name, ": {"value":"paramaters('helapisng')"},
+    "networkSecurityGroups_helmgmtnsg_name": {"value":"paramaters('helmgmtnsg')"},
+    "subnets_dbsubnet_name": {"value":"paramaters('dbsubneta')"},
+    "subnets_apisubnet_name": {"value":"paramaters('apisubnet')"},
+    "subnets_mgmtsubnet_name": {"value":"paramaters('mgmtsubnet')"}
+    }
+}
