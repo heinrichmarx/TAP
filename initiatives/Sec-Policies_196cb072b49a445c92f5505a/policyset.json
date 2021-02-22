@@ -1,0 +1,45 @@
+{
+ "properties": {
+  "displayName": "Sec-Policies",
+  "policyType": "Custom",
+  "description": "This initiative is a collection of policies that will be the base set of policies for client subscriptions",
+  "metadata": {
+   "category": "Security",
+   "createdBy": "7e76ef86-8b02-44fc-a3e4-a750069f988b",
+   "createdOn": "2021-02-22T14:13:47.9086875Z",
+   "updatedBy": null,
+   "updatedOn": null
+  },
+  "parameters": {},
+  "policyDefinitions": [
+   {
+    "policyDefinitionReferenceId": "Sec Not allowed resources_1",
+    "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/RBI-Managed/providers/Microsoft.Authorization/policyDefinitions/Sec Not allowed resources",
+    "parameters": {},
+    "groupNames": []
+   },
+   {
+    "policyDefinitionReferenceId": "Sec Not allowed Network resources_1",
+    "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/RBI-Managed/providers/Microsoft.Authorization/policyDefinitions/Sec Not allowed resource types",
+    "parameters": {},
+    "groupNames": []
+   },
+   {
+    "policyDefinitionReferenceId": "Sec Not allowed Classic resources_1",
+    "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/RBI-Managed/providers/Microsoft.Authorization/policyDefinitions/Sec Not allowed Classic resource types",
+    "parameters": {},
+    "groupNames": []
+   },
+   {
+    "policyDefinitionReferenceId": "Sec Allowed Locations_1",
+    "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/RBI-Managed/providers/Microsoft.Authorization/policyDefinitions/Allowed Locations RBI",
+    "parameters": {},
+    "groupNames": []
+   }
+  ],
+  "policyDefinitionGroups": []
+ },
+ "id": "/subscriptions/fce0542a-75ec-4544-aec7-3468a3014e6b/providers/Microsoft.Authorization/policySetDefinitions/196cb072b49a445c92f5505a",
+ "type": "Microsoft.Authorization/policySetDefinitions",
+ "name": "196cb072b49a445c92f5505a"
+}
